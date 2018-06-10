@@ -38,8 +38,6 @@ pipeline{
 
 
          }
-
-
      }
      }
      stage('final deploy to')
@@ -48,6 +46,24 @@ pipeline{
      {
          echo "now build is deploying to staging"
          build 'deploying-staging'
+
+     }
+
+     }
+
+       stage('final deploy to prod')
+     {
+     steps
+     {
+
+      timeout(2) {
+    
+              input 'do we allow it for prod'
+
+                 }
+
+         echo "now build is deploying to prod"
+         build 'prod'
 
      }
 
